@@ -13,6 +13,8 @@
 		737271C21F0428DC00C04847 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 737271C01F0428DC00C04847 /* Main.storyboard */; };
 		737271C41F0428DC00C04847 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 737271C31F0428DC00C04847 /* Assets.xcassets */; };
 		737271C71F0428DC00C04847 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 737271C51F0428DC00C04847 /* LaunchScreen.storyboard */; };
+		D75387561F043B4E00C78AF9 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D75387551F043B4E00C78AF9 /* MapViewController.m */; };
+		D75387591F043F2200C78AF9 /* FiltersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D75387581F043F2200C78AF9 /* FiltersViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,10 @@
 		737271C31F0428DC00C04847 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		737271C61F0428DC00C04847 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		737271C81F0428DC00C04847 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D75387541F043B4E00C78AF9 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		D75387551F043B4E00C78AF9 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		D75387571F043F2200C78AF9 /* FiltersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiltersViewController.h; sourceTree = "<group>"; };
+		D75387581F043F2200C78AF9 /* FiltersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiltersViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +68,10 @@
 				737271BB1F0428DC00C04847 /* AppDelegate.m */,
 				737271BD1F0428DC00C04847 /* ViewController.h */,
 				737271BE1F0428DC00C04847 /* ViewController.m */,
+				D75387541F043B4E00C78AF9 /* MapViewController.h */,
+				D75387551F043B4E00C78AF9 /* MapViewController.m */,
+				D75387571F043F2200C78AF9 /* FiltersViewController.h */,
+				D75387581F043F2200C78AF9 /* FiltersViewController.m */,
 				737271C01F0428DC00C04847 /* Main.storyboard */,
 				737271C31F0428DC00C04847 /* Assets.xcassets */,
 				737271C51F0428DC00C04847 /* LaunchScreen.storyboard */,
@@ -153,6 +163,8 @@
 				737271BF1F0428DC00C04847 /* ViewController.m in Sources */,
 				737271BC1F0428DC00C04847 /* AppDelegate.m in Sources */,
 				737271B91F0428DC00C04847 /* main.m in Sources */,
+				D75387591F043F2200C78AF9 /* FiltersViewController.m in Sources */,
+				D75387561F043B4E00C78AF9 /* MapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,6 +321,7 @@
 				737271CD1F0428DC00C04847 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
