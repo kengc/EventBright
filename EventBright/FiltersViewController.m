@@ -7,6 +7,8 @@
 //
 
 #import "FiltersViewController.h"
+#import "EventBright-Swift.h"
+#import "NSURLSessionHelper.h"
 
 @interface FiltersViewController ()
 @property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
@@ -16,6 +18,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
 @property (weak, nonatomic) IBOutlet UISlider *distanceSlider;
 @property int currentDistance;
+
+@property (nonatomic) NSMutableArray *events;
+@property (nonatomic) NSMutableArray *eventIds;
+@property (nonatomic) NSMutableArray *eventObjects;
+@property (nonatomic) EventModel *eventObject;
 
 @end
 
@@ -27,6 +34,24 @@
     [super viewDidLoad];
     _distanceSlider.minimumValue = 1;
     _distanceSlider.maximumValue = 100;
+    
+    
+    self.events = [[NSMutableArray alloc] init];
+    self.eventIds = [[NSMutableArray alloc] init];
+    self.eventObject = [[EventModel alloc] init];
+    
+    self.eventObjects = [[NSMutableArray alloc] init];
+    
+    
+    
+    [NSURLSessionHelper fetchEventIDWithin:@"1km" latitude:@"+49.281916" longitude:@"-123.108317" price:@"free" startdate:@"next_month" events:self.eventIds eventobject:self.eventObject eventobjects:self.eventObjects];
+    
+    NSLog(@"count after: %lu", (unsigned long)self.eventIds.count);
+
+    
+    
+    NSLog(@"evenmodel: %lu", (unsigned long)self.eventObjects.count);
+    
 }
 - (IBAction)distanceSlider:(id)sender
 {
