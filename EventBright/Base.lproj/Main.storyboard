@@ -27,7 +27,6 @@
                                 <state key="normal" title="GO"/>
                                 <connections>
                                     <action selector="goToMap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ls3-hl-CEr"/>
-                                    <segue destination="VZq-OJ-SNq" kind="show" identifier="viewMap" id="fEK-2V-HKo"/>
                                 </connections>
                             </button>
                             <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="szo-cF-xIx">

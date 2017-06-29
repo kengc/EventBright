@@ -54,8 +54,19 @@
     
     NSLog(@"evenmodel: %lu", (unsigned long)self.eventObjects.count);
     
-}
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(observeStepperValueChange:) name:@"finishedPopulating" object:nil];
 
+}
+-(void)observeStepperValueChange:(NSNotification *)notification
+{
+
+    MapViewController* viewController = [[MapViewController alloc] init];
+    viewController.event = self.eventObjects;
+    [self.navigationController pushViewController:viewController animated:YES];
+    
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"finishedPopulating"  object:nil];
+    //[viewController release];
+}
 - (IBAction)distanceSlider:(id)sender
 {
     _currentDistance = (int)self.distanceSlider.value;
@@ -102,12 +113,7 @@
     [NSURLSessionHelper fetchEventIDWithin:self.distanceLabel.text latitude:@"+49.281916" longitude:@"-123.108317" price:self.priceLabel.text startdate:self.dateLabel.text events:self.eventIds eventobject:self.eventObject eventobjects:self.eventObjects];
     
 }
-
-//MyViewController* viewController = [[MyViewController alloc] init];
-//
-//[self.navigationController pushViewController:viewController animated:YES];
-//[viewController release];
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+//- (void)performSegueWithIdentifier:(UIStoryboardSegue *)segue sender:(id)sender
 //{
 //
 //    if([segue.identifier isEqualToString:@"viewMap"])

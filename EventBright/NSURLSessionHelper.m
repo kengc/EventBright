@@ -77,10 +77,12 @@
                     eventObject.address = ed[@"address"];
                     [eventobjects addObject:eventObject];
                 }
-                
+       [[NSNotificationCenter defaultCenter] postNotificationName:@"finishedPopulating" object:nil userInfo:nil];
             });
             
+            
         }];
+        
         [dataTask resume];
     }
 }
@@ -89,7 +91,8 @@
                      price:(NSString *)price startdate:(NSString *)startdate events:(NSMutableArray *)eventIds
                eventobject:(EventModel *)eventObject eventobjects:(NSMutableArray *)eventobjects{
     
-    
+    [eventobjects removeAllObjects];
+    [eventIds removeAllObjects];
     
     //https://www.eventbriteapi.com/v3/events/search/?token=CNEQ55J3IRHNX3EGO6DX
     
