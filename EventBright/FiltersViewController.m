@@ -9,6 +9,7 @@
 #import "FiltersViewController.h"
 #import "EventBright-Swift.h"
 #import "NSURLSessionHelper.h"
+#import "MapViewController.h"
 
 @interface FiltersViewController ()
 @property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
@@ -44,7 +45,7 @@
     
     
     
-    [NSURLSessionHelper fetchEventIDWithin:@"1km" latitude:@"+49.281916" longitude:@"-123.108317" price:@"free" startdate:@"next_month" events:self.eventIds eventobject:self.eventObject eventobjects:self.eventObjects];
+    
     
     NSLog(@"count after: %lu", (unsigned long)self.eventIds.count);
 
@@ -53,6 +54,7 @@
     NSLog(@"evenmodel: %lu", (unsigned long)self.eventObjects.count);
     
 }
+
 - (IBAction)distanceSlider:(id)sender
 {
     _currentDistance = (int)self.distanceSlider.value;
@@ -67,11 +69,12 @@
     }
     else{
         self.priceLabel.text = @"PAID";
+        [_isFreeButton setTitle:@"PAID" forState:UIControlStateSelected];
     }
     _isFreeButton.selected = !_isFreeButton.selected;
     
     
-    [_isFreeButton setTitle:@"PAID" forState:UIControlStateSelected];
+    
     
 }
 - (IBAction)datePicker:(id)sender
@@ -83,4 +86,23 @@
 
 - (void)didReceiveMemoryWarning {[super didReceiveMemoryWarning];}
 
+
+- (IBAction)goToMap:(id)sender
+{
+    [NSURLSessionHelper fetchEventIDWithin:self.distanceLabel.text latitude:@"+49.281916" longitude:@"-123.108317" price:self.priceLabel.text startdate:self.dateLabel.text events:self.eventIds eventobject:self.eventObject eventobjects:self.eventObjects];
+    
+}
+
+//MyViewController* viewController = [[MyViewController alloc] init];
+//
+//[self.navigationController pushViewController:viewController animated:YES];
+//[viewController release];
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+//{
+//
+//    if([segue.identifier isEqualToString:@"viewMap"])
+//    {
+//        MapViewController *controller = [segue destinationViewController];
+//        [controller setEvent:self.eventObjects];
+//    }}
 @end

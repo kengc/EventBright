@@ -10,4 +10,6 @@
 @import CoreLocation;
 
 @interface MapViewController : UIViewController
+@property (weak,nonatomic) NSMutableArray* event;
+- (void)setEvent:(NSMutableArray *)newEvent;
 @end

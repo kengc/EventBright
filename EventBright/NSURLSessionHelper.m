@@ -7,6 +7,7 @@
 //
 
 #import "NSURLSessionHelper.h"
+#import "MapViewController.h"
 //#import "EventsModel.swift"
 //#import "EventsModel.swift"
 
@@ -114,6 +115,8 @@
     
     
     NSURLRequest *urlRequest = [[NSURLRequest alloc] initWithURL:url];
+    
+    NSLog(@"%@", url);
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
