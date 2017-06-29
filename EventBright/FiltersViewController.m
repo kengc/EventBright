@@ -24,6 +24,7 @@
 @property (nonatomic) NSMutableArray *eventIds;
 @property (nonatomic) NSMutableArray *eventObjects;
 @property (nonatomic) EventModel *eventObject;
+  @property (nonatomic) NSMutableDictionary *categoriesDict;
 
 @end
 
@@ -46,17 +47,10 @@
     NSLog(@"count after: %lu", (unsigned long)self.eventIds.count);
     
     NSLog(@"evenmodel: %lu", (unsigned long)self.eventObjects.count);
-    
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataDownloaded:) name:@"DataDownloaded" object:nil];
-//
+
+    self.categoriesDict = [[NSMutableDictionary alloc] init];
+    [NSURLSessionHelper fetchEventCategories:self.categoriesDict];
 }
-//-(void)dataDownloaded:(NSNotification *)note {
-//    
-//    NSDictionary *dict = note.userInfo;
-//    NSArray *dataArray = [dict objectForKey:@"Data"];
-//    NSLog(@"ararayry%@",[dataArray[0] latCoordinate]);
-////    [[NSNotificationCenter defaultCenter] removeObserver:self];
-//}
 -(void)observeStepperValueChange:(NSNotification *)notification
 {
 
@@ -105,9 +99,8 @@
 
 - (IBAction)goToMap:(id)sender
 {
-    [NSURLSessionHelper fetchEventIDWithin:self.distanceLabel.text latitude:@"+49.281916" longitude:@"-123.108317" price:self.priceLabel.text startdate:self.dateLabel.text events:self.eventIds  eventobjects:self.eventObjects];
-    
-    
+    [NSURLSessionHelper fetchEventIDWithin:self.distanceLabel.text latitude:@"+49.281916" longitude:@"-123.108317" price:self.priceLabel.text startdate:self.dateLabel.text events:self.eventIds  eventobjects:self.eventObjects categoryId:@""
+                                      city:@""];
     
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

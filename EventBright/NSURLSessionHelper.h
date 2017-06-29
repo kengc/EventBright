@@ -12,11 +12,11 @@
 
 @interface NSURLSessionHelper : NSObject
 
-+ (void)fetchEventDetailsWith:(NSMutableArray *)eventIds eventobject:(EventModel *)eventObject eventobjects:(NSMutableArray *)eventobjects;
+
++ (void)fetchEventCategories:(NSMutableDictionary *)categoriesDict;
 
 + (void)fetchEventIDWithin:(NSString *)locationRadius latitude:(NSString *)lat longitude:(NSString *)lon
                      price:(NSString *)price startdate:(NSString *)startdate events:(NSMutableArray *)eventIds
-              eventobjects:(NSMutableArray *)eventobjects;
-
+              eventobjects:(NSMutableArray *)eventobjects categoryId:(NSString *)catId city:(NSString *)city;
 
 @end

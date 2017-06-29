@@ -28,9 +28,6 @@
     [self getData];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataDownloaded:) name:@"DataDownloaded" object:nil];
-    
-    
-    
 }
 -(void)dataDownloaded:(NSNotification *)note {
     
@@ -64,13 +61,6 @@
     [self.mapView setRegion:region];
     
     self.mapView.delegate = self;
-    
-    NSArray* locations = @[];
-    for (int i=0; i<[locations count]; i++) {
-        MKPointAnnotation* annotation= [MKPointAnnotation new];
-        annotation.coordinate= [locations[i] coordinate];
-        [_mapView addAnnotation: annotation];
-    }
     NSLog(@"%@",_event);
     
     
@@ -86,7 +76,8 @@
     {
         MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
         point.coordinate = CLLocationCoordinate2DMake([[_coordinateData[i] latCoordinate] floatValue], [[_coordinateData[i] lonCoordinate] floatValue]);
-
+        point.title = [NSString stringWithFormat:@"%@",  [_coordinateData[i] eventName]];
+         point.subtitle = [NSString stringWithFormat:@"%@  %@",  [_coordinateData[i] venueName], [_coordinateData[i] address]];
         [_mapView addAnnotation: point];
     }
     

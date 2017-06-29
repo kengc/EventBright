@@ -16,6 +16,8 @@ class EventModel : NSObject {
     var latCoordinate:String = ""
     var lonCoordinate:String = ""
     var address:String = ""
+    var eventName:String = ""
+    var venueName:String = ""
 
 //    override init () {
 //        // uncomment this line if your class has been inherited from any other class
