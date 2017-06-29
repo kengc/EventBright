@@ -100,7 +100,7 @@
     NSURLQueryItem *queryItem2 = [[NSURLQueryItem alloc] initWithName:@"location.latitude" value:lat];
     NSURLQueryItem *queryItem3 = [[NSURLQueryItem alloc] initWithName:@"location.longitude" value:lon];
     NSURLQueryItem *queryItem4 = [[NSURLQueryItem alloc] initWithName:@"price" value:price];
-    NSURLQueryItem *queryItem5 = [[NSURLQueryItem alloc] initWithName:@"start_date.keyword" value:startdate];
+    NSURLQueryItem *queryItem5 = [[NSURLQueryItem alloc] initWithName:@"start_date.range_start" value:startdate];
     NSURLQueryItem *queryItem6 = [[NSURLQueryItem alloc] initWithName:@"token" value:@"CNEQ55J3IRHNX3EGO6DX"];
     
     

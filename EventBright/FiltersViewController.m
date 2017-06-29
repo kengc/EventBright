@@ -43,7 +43,8 @@
     
     self.eventObjects = [[NSMutableArray alloc] init];
     
-    
+//    UIDatePicker *picker = (UIDatePicker*)self.DateText.inputView;
+ 
     
     
     
@@ -65,10 +66,10 @@
 {
     if(_isFreeButton.selected == YES)
     {
-        self.priceLabel.text = @"FREE";
+        self.priceLabel.text = @"free";
     }
     else{
-        self.priceLabel.text = @"PAID";
+        self.priceLabel.text = @"paid";
         [_isFreeButton setTitle:@"PAID" forState:UIControlStateSelected];
     }
     _isFreeButton.selected = !_isFreeButton.selected;
@@ -81,7 +82,16 @@
 {
     NSDate *chosen = [_datePicker date];
     NSString *dateText = [NSString stringWithFormat:@"%@",chosen];
-    self.dateLabel.text = dateText;
+    
+    NSMutableString* dateTextMutable = (NSMutableString*)dateText;
+    NSString *newString = [dateTextMutable substringToIndex:[dateTextMutable length]-6];
+    
+    NSString* finalString = [newString stringByReplacingOccurrencesOfString:@" " withString:@"T"];
+    NSLog(@"DATE OBJECT~~~~%@",finalString);
+    self.dateLabel.text = finalString;
+    
+    
+
 }
 
 - (void)didReceiveMemoryWarning {[super didReceiveMemoryWarning];}
