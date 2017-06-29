@@ -43,33 +43,31 @@
     
     self.eventObjects = [[NSMutableArray alloc] init];
     
-//    UIDatePicker *picker = (UIDatePicker*)self.DateText.inputView;
- 
-    
-    
-    
     NSLog(@"count after: %lu", (unsigned long)self.eventIds.count);
-
-    
     
     NSLog(@"evenmodel: %lu", (unsigned long)self.eventObjects.count);
     
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(observeStepperValueChange:) name:@"finishedPopulating" object:nil];
-
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataDownloaded:) name:@"DataDownloaded" object:nil];
+//
 }
+//-(void)dataDownloaded:(NSNotification *)note {
+//    
+//    NSDictionary *dict = note.userInfo;
+//    NSArray *dataArray = [dict objectForKey:@"Data"];
+//    NSLog(@"ararayry%@",[dataArray[0] latCoordinate]);
+////    [[NSNotificationCenter defaultCenter] removeObserver:self];
+//}
 -(void)observeStepperValueChange:(NSNotification *)notification
 {
 
     MapViewController* viewController = [[MapViewController alloc] init];
     viewController.event = self.eventObjects;
 
-//    [self.navigationController pushViewController:viewController animated:YES];
     [self performSegueWithIdentifier:@"viewMap" sender:self];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"finishedPopulating"  object:nil];
-//    [viewController release];
     
-    NSLog(@"eventmodel: %lu", (unsigned long)self.eventObjects.count);
+    NSLog(@"eventmodsnvm,xcn,xel: %lu", (unsigned long)self.eventObjects.count);
 }
 - (IBAction)distanceSlider:(id)sender
 {
@@ -109,10 +107,10 @@
 {
     [NSURLSessionHelper fetchEventIDWithin:self.distanceLabel.text latitude:@"+49.281916" longitude:@"-123.108317" price:self.priceLabel.text startdate:self.dateLabel.text events:self.eventIds  eventobjects:self.eventObjects];
     
+    
+    
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
     
     if([segue.identifier isEqualToString:@"viewMap"]){
         

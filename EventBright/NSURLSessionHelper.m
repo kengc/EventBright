@@ -59,7 +59,7 @@
                 eventObject.latCoordinate = eventDetails[@"latitude"];
                 eventObject.lonCoordinate = eventDetails[@"longitude"];
                 
-                NSDictionary *ed = eventDetails[@"address"];
+//                NSDictionary *ed = eventDetails[@"address"];
                 
 //                eventObject.city = ed[@"city"];
 //                eventObject.region = ed[@"region"];
@@ -159,14 +159,20 @@
                 [eventobjects addObject:modelObject];
                 
                 NSLog(@"eventobjects: %lu", (unsigned long)eventobjects.count);
-                
+                NSLog(@"eventobj lat%@",[eventobjects[0] latCoordinate]);
                 
                 //[eventIds addObject:venueID];
             }
             
             NSLog(@"eventids: %lu", (unsigned long)eventIds.count);
             //[self fetchEventDetailsWith:eventIds eventobject:eventObject eventobjects:eventobjects];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"finishedPopulating" object:nil userInfo:nil];
+            
+//            [[NSNotificationCenter defaultCenter] postNotificationName:@"finishedPopulating" object:nil userInfo:nil];
+
+            NSDictionary *dict = [NSDictionary dictionaryWithObject:eventobjects forKey:@"Data"];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"DataDownloaded" object:self userInfo:dict];
+            
+            
         });
     }];
     [dataTask resume];
