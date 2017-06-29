@@ -82,44 +82,13 @@
 }
 -(void)setUpPins
 {
-    NSLog(@"heyeyeh%@",_coordinateData);
-    
-    NSMutableArray* locations;
-    CLLocation *towerLocation = [[CLLocation alloc] initWithLatitude:[[_coordinateData[0] latCoordinate] floatValue] longitude:[[_coordinateData[0] lonCoordinate] floatValue]];
-    [locations addObject:towerLocation];
-    
-    
-    CLLocationCoordinate2D coord = [[locations lastObject] coordinate];
-    
-    for (int i=0; i<[locations count]; i++)
+    for(int i = 0; i < 50; i++)
     {
-        MKPointAnnotation* annotation= [MKPointAnnotation new];
-        annotation.coordinate= [locations[i] coordinate];
-        [_mapView addAnnotation: annotation];
+        MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
+        point.coordinate = CLLocationCoordinate2DMake([[_coordinateData[i] latCoordinate] floatValue], [[_coordinateData[i] lonCoordinate] floatValue]);
+
+        [_mapView addAnnotation: point];
     }
-    
-    
-    CLLocationDegrees latitude = 49.281916;
-    CLLocationDegrees longitude = -123.108317;
-    MKPointAnnotation *point1 = [[MKPointAnnotation alloc] init];
-    MKPointAnnotation *point2 = [[MKPointAnnotation alloc] init];
-    MKPointAnnotation *point3 = [[MKPointAnnotation alloc] init];
-    MKPointAnnotation *point4 = [[MKPointAnnotation alloc] init];
-    
-    
-    point1.coordinate = CLLocationCoordinate2DMake(latitude, longitude);
-    [_mapView addAnnotation: point1];
-    
-    point2.coordinate = CLLocationCoordinate2DMake([[_coordinateData[0] latCoordinate] floatValue], [[_coordinateData[0] lonCoordinate] floatValue]);
-    [_mapView addAnnotation: point2];
-    
-    point3.coordinate = CLLocationCoordinate2DMake([[_coordinateData[1] latCoordinate] floatValue], [[_coordinateData[1] lonCoordinate] floatValue]);
-    [_mapView addAnnotation: point3];
-    
-    point4.coordinate = CLLocationCoordinate2DMake([[_coordinateData[2] latCoordinate] floatValue], [[_coordinateData[2] lonCoordinate] floatValue]);
-    [_mapView addAnnotation: point4];
-    
-   
     
 }
 
