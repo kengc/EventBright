@@ -16,7 +16,6 @@
 
 + (void)fetchEventIDWithin:(NSString *)locationRadius latitude:(NSString *)lat longitude:(NSString *)lon
                      price:(NSString *)price startdate:(NSString *)startdate events:(NSMutableArray *)eventIds
-               eventobject:(EventModel *)eventObject eventobjects:(NSMutableArray *)eventobjects;
-
+              eventobjects:(NSMutableArray *)eventobjects;
 
 @end

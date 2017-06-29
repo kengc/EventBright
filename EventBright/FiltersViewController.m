@@ -54,7 +54,7 @@
     
     NSLog(@"evenmodel: %lu", (unsigned long)self.eventObjects.count);
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(observeStepperValueChange:) name:@"finishedPopulating" object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(observeStepperValueChange:) name:@"finishedPopulating" object:nil];
 
 }
 -(void)observeStepperValueChange:(NSNotification *)notification
@@ -62,10 +62,14 @@
 
     MapViewController* viewController = [[MapViewController alloc] init];
     viewController.event = self.eventObjects;
-    [self.navigationController pushViewController:viewController animated:YES];
+
+//    [self.navigationController pushViewController:viewController animated:YES];
+    [self performSegueWithIdentifier:@"viewMap" sender:self];
     
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"finishedPopulating"  object:nil];
-    //[viewController release];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"finishedPopulating"  object:nil];
+//    [viewController release];
+    
+    NSLog(@"eventmodel: %lu", (unsigned long)self.eventObjects.count);
 }
 - (IBAction)distanceSlider:(id)sender
 {
@@ -85,9 +89,6 @@
     }
     _isFreeButton.selected = !_isFreeButton.selected;
     
-    
-    
-    
 }
 - (IBAction)datePicker:(id)sender
 {
@@ -98,11 +99,7 @@
     NSString *newString = [dateTextMutable substringToIndex:[dateTextMutable length]-6];
     
     NSString* finalString = [newString stringByReplacingOccurrencesOfString:@" " withString:@"T"];
-    NSLog(@"DATE OBJECT~~~~%@",finalString);
     self.dateLabel.text = finalString;
-    
-    
-
 }
 
 - (void)didReceiveMemoryWarning {[super didReceiveMemoryWarning];}
@@ -110,15 +107,16 @@
 
 - (IBAction)goToMap:(id)sender
 {
-    [NSURLSessionHelper fetchEventIDWithin:self.distanceLabel.text latitude:@"+49.281916" longitude:@"-123.108317" price:self.priceLabel.text startdate:self.dateLabel.text events:self.eventIds eventobject:self.eventObject eventobjects:self.eventObjects];
+    [NSURLSessionHelper fetchEventIDWithin:self.distanceLabel.text latitude:@"+49.281916" longitude:@"-123.108317" price:self.priceLabel.text startdate:self.dateLabel.text events:self.eventIds  eventobjects:self.eventObjects];
     
 }
-//- (void)performSegueWithIdentifier:(UIStoryboardSegue *)segue sender:(id)sender
-//{
-//
-//    if([segue.identifier isEqualToString:@"viewMap"])
-//    {
-//        MapViewController *controller = [segue destinationViewController];
-//        [controller setEvent:self.eventObjects];
-//    }}
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+    
+    if([segue.identifier isEqualToString:@"viewMap"]){
+        
+        MapViewController *controller = [segue destinationViewController];
+        [controller setEvent:self.eventObjects];
+    }}
 @end
