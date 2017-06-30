@@ -19,19 +19,4 @@ class EventModel : NSObject {
     var eventName:String = ""
     var venueName:String = ""
     var eventurl:String = ""
-
-//    override init () {
-//        // uncomment this line if your class has been inherited from any other class
-//        //super.init()
-//    }
-
-
-//   convenience init(city:String, region:String, country:String, latcoordinate:String, lonCoordinate:String, phonenumber:Int, address:String){
-//        self.city = city
-//        self.region = region
-//        self.country = country
-//        self.latCoordinate = latcoordinate
-//        self.lonCoordinate = lonCoordinate
-//        self.address = address
-//    }
 }

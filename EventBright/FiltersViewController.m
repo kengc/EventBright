@@ -54,10 +54,6 @@
     self.priceButtonLabel = @"free";
     
     _datePicker.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
-    
-//    NSLog(@"count after: %lu", (unsigned long)self.eventIds.count);
-    
-//    NSLog(@"evenmodel: %lu", (unsigned long)self.eventObjects.count);
 
     self.categoriesDict = [[NSMutableDictionary alloc] init];
     [NSURLSessionHelper fetchEventCategories:self.categoriesDict];
@@ -66,15 +62,12 @@
 }
 -(void)observeStepperValueChange:(NSNotification *)notification
 {
-
     MapViewController* viewController = [[MapViewController alloc] init];
     viewController.event = self.eventObjects;
 
     [self performSegueWithIdentifier:@"viewMap" sender:self];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"finishedPopulating"  object:nil];
-    
-//    NSLog(@"eventmodsnvm,xcn,xel: %lu", (unsigned long)self.eventObjects.count);
 }
 - (IBAction)distanceSlider:(id)sender
 {
@@ -87,11 +80,9 @@
 {
     if(_isFreeButton.selected == YES)
     {
-//        self.priceLabel.text = @"free";
         self.priceButtonLabel = @"free";
     }
     else{
-//        self.priceLabel.text = @"paid";
         self.priceButtonLabel = @"paid";
         [_isFreeButton setTitle:@"PAID" forState:UIControlStateSelected];
     }

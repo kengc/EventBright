@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "EventBright-Swift.h"
-//#import "EventBright-Swift.h"
 
 @interface NSURLSessionHelper : NSObject
 
