@@ -15,6 +15,7 @@
 		737271C71F0428DC00C04847 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 737271C51F0428DC00C04847 /* LaunchScreen.storyboard */; };
 		737271D91F044ACC00C04847 /* NSURLSessionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 737271D81F044ACC00C04847 /* NSURLSessionHelper.m */; };
 		737CF81D1F044F550060567A /* EventsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737CF81C1F044F550060567A /* EventsModel.swift */; };
+		737CF8211F05EF110060567A /* AnnotationButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 737CF8201F05EF110060567A /* AnnotationButton.m */; };
 		D722BC091F05D27300236424 /* CategoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D722BC081F05D27300236424 /* CategoryTableViewCell.m */; };
 		D75387561F043B4E00C78AF9 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D75387551F043B4E00C78AF9 /* MapViewController.m */; };
 		D75387591F043F2200C78AF9 /* FiltersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D75387581F043F2200C78AF9 /* FiltersViewController.m */; };
@@ -35,6 +36,8 @@
 		737271D81F044ACC00C04847 /* NSURLSessionHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSURLSessionHelper.m; sourceTree = "<group>"; };
 		737CF81C1F044F550060567A /* EventsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsModel.swift; sourceTree = "<group>"; };
 		737CF81E1F0452860060567A /* EventBright-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EventBright-Bridging-Header.h"; sourceTree = "<group>"; };
+		737CF81F1F05EF110060567A /* AnnotationButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnotationButton.h; sourceTree = "<group>"; };
+		737CF8201F05EF110060567A /* AnnotationButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnotationButton.m; sourceTree = "<group>"; };
 		D722BC071F05D27300236424 /* CategoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryTableViewCell.h; sourceTree = "<group>"; };
 		D722BC081F05D27300236424 /* CategoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryTableViewCell.m; sourceTree = "<group>"; };
 		D75387541F043B4E00C78AF9 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
@@ -81,6 +84,8 @@
 				737271D81F044ACC00C04847 /* NSURLSessionHelper.m */,
 				D75387541F043B4E00C78AF9 /* MapViewController.h */,
 				D75387551F043B4E00C78AF9 /* MapViewController.m */,
+				737CF81F1F05EF110060567A /* AnnotationButton.h */,
+				737CF8201F05EF110060567A /* AnnotationButton.m */,
 				737CF81C1F044F550060567A /* EventsModel.swift */,
 				737CF81E1F0452860060567A /* EventBright-Bridging-Header.h */,
 				D722BC071F05D27300236424 /* CategoryTableViewCell.h */,
@@ -180,6 +185,7 @@
 				737271BC1F0428DC00C04847 /* AppDelegate.m in Sources */,
 				737271B91F0428DC00C04847 /* main.m in Sources */,
 				D722BC091F05D27300236424 /* CategoryTableViewCell.m in Sources */,
+				737CF8211F05EF110060567A /* AnnotationButton.m in Sources */,
 				D75387591F043F2200C78AF9 /* FiltersViewController.m in Sources */,
 				737CF81D1F044F550060567A /* EventsModel.swift in Sources */,
 				737271D91F044ACC00C04847 /* NSURLSessionHelper.m in Sources */,

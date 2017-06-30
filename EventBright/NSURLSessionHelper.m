@@ -175,6 +175,10 @@
                     modelObject.eventName = event[@"name"][@"text"];
                 }
                 
+                if ([event objectForKey:@"url"] != [NSNull null]) {
+                    NSLog(@"url");
+                    modelObject.eventurl = event[@"url"];
+                }
                 
                 if ([event objectForKey:@"venue"] != [NSNull null]) {
                     NSLog(@"venueDetails");
