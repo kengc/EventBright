@@ -229,11 +229,10 @@
                 
                 //[eventIds addObject:venueID];
             }
-            
-            NSLog(@"eventids: %lu", (unsigned long)eventIds.count);
-            NSDictionary *dict = [NSDictionary dictionaryWithObject:eventobjects forKey:@"Data"];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"DataDownloaded" object:self userInfo:dict];
-        });
+            if (eventobjects.count != 0) {
+                NSDictionary *dict = [NSDictionary dictionaryWithObject:eventobjects forKey:@"Data"];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"DataDownloaded" object:self userInfo:dict];
+            }        });
     }];
     [dataTask resume];
 }
