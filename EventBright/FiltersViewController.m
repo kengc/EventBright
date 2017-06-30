@@ -49,6 +49,8 @@
     
     self.eventObjects = [[NSMutableArray alloc] init];
     
+    _datePicker.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
+    
     NSLog(@"count after: %lu", (unsigned long)self.eventIds.count);
     
     NSLog(@"evenmodel: %lu", (unsigned long)self.eventObjects.count);
@@ -75,6 +77,7 @@
     _currentDistance = (int)self.distanceSlider.value;
     NSString* km = [NSString stringWithFormat:@"%ikm", self.currentDistance];
     self.distanceLabel.text = km;
+    [self.cityLabel resignFirstResponder];
 }
 - (IBAction)isFreeButton:(id)sender
 {
@@ -129,9 +132,9 @@
         [controller setEvent:self.eventObjects];
     }}
 
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return @"Category";
-}
+//-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+//    return @"Categories";
+//}
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
@@ -144,7 +147,10 @@
     
 //    cell. = self.categories[indexPath.row];
     cell.categoryCellLabel.text = self.categories[indexPath.row];
-    
+    cell.categoryCellLabel.highlightedTextColor = [UIColor  orangeColor];
+    UIView *selectionColor = [[UIView alloc] init];
+    selectionColor.backgroundColor = [UIColor clearColor];
+    cell.selectedBackgroundView = selectionColor;
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -233,8 +239,9 @@
             self.categoryIdLabel.text = @"199";
             break;
     }
-    // self.categorySelected = cell.textLabel.text;
     
+    // self.categorySelected = cell.textLabel.text;
+    [self.cityLabel resignFirstResponder];
 
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
