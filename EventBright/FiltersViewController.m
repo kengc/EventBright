@@ -50,6 +50,8 @@
     
     self.eventObjects = [[NSMutableArray alloc] init];
     
+    self.priceButtonLabel = @"free";
+    
     _datePicker.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
     
     NSLog(@"count after: %lu", (unsigned long)self.eventIds.count);
