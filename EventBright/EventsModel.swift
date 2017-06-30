@@ -18,6 +18,7 @@ class EventModel : NSObject {
     var address:String = ""
     var eventName:String = ""
     var venueName:String = ""
+    var eventurl:String = ""
 
 //    override init () {
 //        // uncomment this line if your class has been inherited from any other class

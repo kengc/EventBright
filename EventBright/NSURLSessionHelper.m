@@ -122,8 +122,8 @@
     NSURLQueryItem *queryItem2 = [[NSURLQueryItem alloc] initWithName:@"expand" value:@"venue"];
     [queryItems addObject:queryItem2];
     
-//    NSURLQueryItem *queryItem3 = [[NSURLQueryItem alloc] initWithName:@"sort_by" value:@"distance"];
-//    [queryItems addObject:queryItem3];
+    //    NSURLQueryItem *queryItem3 = [[NSURLQueryItem alloc] initWithName:@"sort_by" value:@"distance"];
+    //    [queryItems addObject:queryItem3];
     
     //    NSArray *queryItems = [[NSArray alloc] initWithObjects:queryItem, queryItem2, queryItem3,queryItem4,queryItem5,queryItem6,
     //                           queryItem7, queryItem8, queryItem9, nil];
@@ -175,6 +175,10 @@
                     modelObject.eventName = event[@"name"][@"text"];
                 }
                 
+                if ([event objectForKey:@"url"] != [NSNull null]) {
+                    NSLog(@"url");
+                    modelObject.eventurl = event[@"url"];
+                }
                 
                 if ([event objectForKey:@"venue"] != [NSNull null]) {
                     NSLog(@"venueDetails");
