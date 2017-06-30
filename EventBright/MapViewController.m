@@ -22,7 +22,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self configureMap];
+//    [self configureMap];
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataDownloaded:) name:@"DataDownloaded" object:nil];
@@ -31,17 +31,17 @@
     
     NSDictionary *dict = note.userInfo;
     NSArray *dataArray = [dict objectForKey:@"Data"];
-    NSLog(@"ararayrqssaCy%@",[dataArray[0] latCoordinate]);
+//    NSLog(@"ararayrqssaCy%@",[dataArray[0] latCoordinate]);
     _coordinateData = [NSMutableArray new];
     [_coordinateData addObjectsFromArray:dataArray];
     //    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self getData];
     [self setUpPins];
 }
--(void)configureMap
-{
-    NSLog(@"~~~~~~~~~~~%lu",(unsigned long)self.event.count);
-}
+//-(void)configureMap
+//{
+//    NSLog(@"~~~~~~~~~~~%lu",(unsigned long)self.event.count);
+//}
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -59,7 +59,7 @@
     [self.mapView setRegion:region];
     
     self.mapView.delegate = self;
-    NSLog(@"%@",_event);
+//    NSLog(@"%@",_event);
     
     
 }
@@ -105,7 +105,7 @@
 }
 - (void) annotationAction:(AnnotationButton *)sender{
     //Call a web view here
-    NSLog(@"OPEN BROWSER");
+//    NSLog(@"OPEN BROWSER");
     
    // [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.google.com"]];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:sender.url]];

@@ -49,7 +49,7 @@
         
         NSDictionary *categoryDict = results[@"categories"];
         
-        NSLog(@"eventDetails: %@", categoryDict);
+//        NSLog(@"eventDetails: %@", categoryDict);
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
@@ -63,7 +63,7 @@
                 }
                 [categoriesDict setObject:catID forKey:category];
             }
-            NSLog(@"categories: %@", categoriesDict);
+//            NSLog(@"categories: %@", categoriesDict);
             
         });
         
@@ -138,7 +138,7 @@
     //https://www.eventbriteapi.com/v3/events/search/?sort_by=distance&location.address=Seattle&location.within=100km&price=free&start_date.range_start=2017-06-30T23%3A19%3A12&token=CNEQ55J3IRHNX3EGO6DX
     NSURLRequest *urlRequest = [[NSURLRequest alloc] initWithURL:url];
     
-    NSLog(@"%@", url);
+//    NSLog(@"%@", url);
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
@@ -171,54 +171,54 @@
                 
                 //event info
                 if ([event objectForKey:@"name"] != [NSNull null]) {
-                    NSLog(@"eventName");
+//                    NSLog(@"eventName");
                     modelObject.eventName = event[@"name"][@"text"];
                 }
                 
                 if ([event objectForKey:@"url"] != [NSNull null]) {
-                    NSLog(@"url");
+//                    NSLog(@"url");
                     modelObject.eventurl = event[@"url"];
                 }
                 
                 if ([event objectForKey:@"venue"] != [NSNull null]) {
-                    NSLog(@"venueDetails");
+//                    NSLog(@"venueDetails");
                     venueDetails = event[@"venue"][@"address"];
                     
                     NSDictionary *vn = event[@"venue"];
                     if ([vn objectForKey:@"name"] != [NSNull null]) {
-                        NSLog(@"venueName");
+//                        NSLog(@"venueName");
                         modelObject.venueName = vn[@"name"];
                     }
                     
                 }
                 
                 if ([venueDetails objectForKey:@"latitude"] != [NSNull null]) {
-                    NSLog(@"latCoordinate");
+//                    NSLog(@"latCoordinate");
                     modelObject.latCoordinate = venueDetails[@"latitude"];
                 }
                 
                 if ([venueDetails objectForKey:@"longitude"] != [NSNull null]) {
-                    NSLog(@"lonCoordinate");
+//                    NSLog(@"lonCoordinate");
                     modelObject.lonCoordinate = venueDetails[@"longitude"];
                 }
                 
                 if ([venueDetails objectForKey:@"city"] != [NSNull null]) {
-                    NSLog(@"city");
+//                    NSLog(@"city");
                     modelObject.city = venueDetails[@"city"];
                 }
                 
                 if ([venueDetails objectForKey:@"region"] != [NSNull null]) {
-                    NSLog(@"region");
+//                    NSLog(@"region");
                     modelObject.region = venueDetails[@"region"];
                 }
                 
                 if ([venueDetails objectForKey:@"country"] != [NSNull null]) {
-                    NSLog(@"country");
+//                    NSLog(@"country");
                     modelObject.country = venueDetails[@"country"];
                 }
                 
                 if ([venueDetails objectForKey:@"localized_address_display"] != [NSNull null]) {
-                    NSLog(@"address");
+//                    NSLog(@"address");
                     modelObject.address = venueDetails[@"localized_address_display"];
                 }
                 

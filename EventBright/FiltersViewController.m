@@ -55,9 +55,9 @@
     
     _datePicker.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
     
-    NSLog(@"count after: %lu", (unsigned long)self.eventIds.count);
+//    NSLog(@"count after: %lu", (unsigned long)self.eventIds.count);
     
-    NSLog(@"evenmodel: %lu", (unsigned long)self.eventObjects.count);
+//    NSLog(@"evenmodel: %lu", (unsigned long)self.eventObjects.count);
 
     self.categoriesDict = [[NSMutableDictionary alloc] init];
     [NSURLSessionHelper fetchEventCategories:self.categoriesDict];
@@ -74,7 +74,7 @@
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"finishedPopulating"  object:nil];
     
-    NSLog(@"eventmodsnvm,xcn,xel: %lu", (unsigned long)self.eventObjects.count);
+//    NSLog(@"eventmodsnvm,xcn,xel: %lu", (unsigned long)self.eventObjects.count);
 }
 - (IBAction)distanceSlider:(id)sender
 {
