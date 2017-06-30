@@ -30,6 +30,7 @@
   @property (nonatomic) NSMutableDictionary *categoriesDict;
 @property (weak, nonatomic) IBOutlet UILabel *categoryIdLabel;
 @property (weak, nonatomic) IBOutlet UILabel *categoryNameLabel;
+@property (weak, nonatomic) NSString* priceButtonLabel;
 @property NSArray* categories;
 @end
 
@@ -83,10 +84,12 @@
 {
     if(_isFreeButton.selected == YES)
     {
-        self.priceLabel.text = @"free";
+//        self.priceLabel.text = @"free";
+        self.priceButtonLabel = @"free";
     }
     else{
-        self.priceLabel.text = @"paid";
+//        self.priceLabel.text = @"paid";
+        self.priceButtonLabel = @"paid";
         [_isFreeButton setTitle:@"PAID" forState:UIControlStateSelected];
     }
     _isFreeButton.selected = !_isFreeButton.selected;
@@ -116,11 +119,11 @@
 {
     if(_cityLabel.text.length == 0)
     {
-    [NSURLSessionHelper fetchEventIDWithin:self.distanceLabel.text latitude:@"+49.281916" longitude:@"-123.108317" price:self.priceLabel.text startdate:self.dateLabel.text events:self.eventIds  eventobjects:self.eventObjects categoryId:self.categoryIdLabel.text city:@""];
+    [NSURLSessionHelper fetchEventIDWithin:self.distanceLabel.text latitude:@"+49.281916" longitude:@"-123.108317" price:self.priceButtonLabel startdate:self.dateLabel.text events:self.eventIds  eventobjects:self.eventObjects categoryId:self.categoryIdLabel.text city:@""];
     }
     else
     {
-        [NSURLSessionHelper fetchEventIDWithin:self.distanceLabel.text latitude:@"" longitude:@"" price:self.priceLabel.text startdate:self.dateLabel.text events:self.eventIds  eventobjects:self.eventObjects categoryId:self.categoryIdLabel.text city:self.cityLabel.text];
+        [NSURLSessionHelper fetchEventIDWithin:self.distanceLabel.text latitude:@"" longitude:@"" price:self.priceButtonLabel startdate:self.dateLabel.text events:self.eventIds  eventobjects:self.eventObjects categoryId:self.categoryIdLabel.text city:self.cityLabel.text];
     }
     
 }
