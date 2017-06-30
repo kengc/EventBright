@@ -42,7 +42,7 @@
     [super viewDidLoad];
     _distanceSlider.minimumValue = 1;
     _distanceSlider.maximumValue = 100;
-    
+    _distanceSlider.value = 1;
     
     self.events = [[NSMutableArray alloc] init];
     self.eventIds = [[NSMutableArray alloc] init];
