@@ -25,7 +25,7 @@
 {
     [super viewDidLoad];
     [self configureMap];
-    [self getData];
+    
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataDownloaded:) name:@"DataDownloaded" object:nil];
 }
@@ -37,6 +37,7 @@
     _coordinateData = [NSMutableArray new];
     [_coordinateData addObjectsFromArray:dataArray];
     //    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self getData];
     [self setUpPins];
 }
 
@@ -52,10 +53,10 @@
 }
 - (void) getData
 {
-    CLLocationDegrees latitude = 49.281916;
-    CLLocationDegrees longitude = -123.108317;
+   // CLLocationDegrees latitude = 49.281916;
+    //CLLocationDegrees longitude = -123.108317;
     
-    CLLocationCoordinate2D startLocationCoordinate = CLLocationCoordinate2DMake(latitude, longitude);
+    CLLocationCoordinate2D startLocationCoordinate = CLLocationCoordinate2DMake([[_coordinateData[0] latCoordinate] floatValue], [[_coordinateData[0] lonCoordinate] floatValue]);
     int regionRadius = 10000;
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(startLocationCoordinate, regionRadius*2, regionRadius*2);
     [self.mapView setRegion:region];
@@ -72,15 +73,14 @@
 }
 -(void)setUpPins
 {
-    for(int i = 0; i < 50; i++)
+    for(int i = 0; i < self.coordinateData.count; i++)
     {
         MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
         point.coordinate = CLLocationCoordinate2DMake([[_coordinateData[i] latCoordinate] floatValue], [[_coordinateData[i] lonCoordinate] floatValue]);
         point.title = [NSString stringWithFormat:@"%@",  [_coordinateData[i] eventName]];
          point.subtitle = [NSString stringWithFormat:@"%@  %@",  [_coordinateData[i] venueName], [_coordinateData[i] address]];
+    
         [_mapView addAnnotation: point];
     }
     
-}
-
-@end
+}@end

@@ -115,11 +115,15 @@
     }
     
     
+    
     NSURLQueryItem *queryItem = [[NSURLQueryItem alloc] initWithName:@"token" value:@"CNEQ55J3IRHNX3EGO6DX"];
     [queryItems addObject:queryItem];
     
     NSURLQueryItem *queryItem2 = [[NSURLQueryItem alloc] initWithName:@"expand" value:@"venue"];
     [queryItems addObject:queryItem2];
+    
+//    NSURLQueryItem *queryItem3 = [[NSURLQueryItem alloc] initWithName:@"sort_by" value:@"distance"];
+//    [queryItems addObject:queryItem3];
     
     //    NSArray *queryItems = [[NSArray alloc] initWithObjects:queryItem, queryItem2, queryItem3,queryItem4,queryItem5,queryItem6,
     //                           queryItem7, queryItem8, queryItem9, nil];
@@ -131,7 +135,7 @@
     components.queryItems = queryItems;
     NSURL *url = components.URL;
     
-    
+    //https://www.eventbriteapi.com/v3/events/search/?sort_by=distance&location.address=Seattle&location.within=100km&price=free&start_date.range_start=2017-06-30T23%3A19%3A12&token=CNEQ55J3IRHNX3EGO6DX
     NSURLRequest *urlRequest = [[NSURLRequest alloc] initWithURL:url];
     
     NSLog(@"%@", url);
@@ -225,7 +229,6 @@
             NSLog(@"eventids: %lu", (unsigned long)eventIds.count);
             NSDictionary *dict = [NSDictionary dictionaryWithObject:eventobjects forKey:@"Data"];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"DataDownloaded" object:self userInfo:dict];
-            
         });
     }];
     [dataTask resume];

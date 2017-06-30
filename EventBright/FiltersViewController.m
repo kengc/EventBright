@@ -10,14 +10,17 @@
 #import "EventBright-Swift.h"
 #import "NSURLSessionHelper.h"
 #import "MapViewController.h"
+#import "CategoryTableViewCell.h"
 
 @interface FiltersViewController ()
+@property (weak, nonatomic) IBOutlet UITextField *cityLabel;
 @property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UIButton *isFreeButton;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
 @property (weak, nonatomic) IBOutlet UISlider *distanceSlider;
+@property (weak, nonatomic) IBOutlet UITableView *categoriesTableView;
 @property int currentDistance;
 
 @property (nonatomic) NSMutableArray *events;
@@ -25,7 +28,9 @@
 @property (nonatomic) NSMutableArray *eventObjects;
 @property (nonatomic) EventModel *eventObject;
   @property (nonatomic) NSMutableDictionary *categoriesDict;
-
+@property (weak, nonatomic) IBOutlet UILabel *categoryIdLabel;
+@property (weak, nonatomic) IBOutlet UILabel *categoryNameLabel;
+@property NSArray* categories;
 @end
 
 
@@ -50,6 +55,8 @@
 
     self.categoriesDict = [[NSMutableDictionary alloc] init];
     [NSURLSessionHelper fetchEventCategories:self.categoriesDict];
+    
+    _categories = [[NSArray alloc]initWithObjects:@"Arts",@"Auto, Boat & Air",@"Business",@"Charity & Causes",@"Community",@"Family & Education",@"Fashion",@"Film & Media",@"Food & Drink",@"Government",@"Health",@"Hobbies",@"Holiday",@"Home & Lifestyle",@"Music",@"Other",@"Science & Tech",@"Spirituality",@"Sports & Fitness",@"Travel & Outdoor", nil];
 }
 -(void)observeStepperValueChange:(NSNotification *)notification
 {
@@ -82,6 +89,10 @@
     _isFreeButton.selected = !_isFreeButton.selected;
     
 }
+- (IBAction)cityLabel:(id)sender
+{
+    
+}
 - (IBAction)datePicker:(id)sender
 {
     NSDate *chosen = [_datePicker date];
@@ -92,6 +103,7 @@
     
     NSString* finalString = [newString stringByReplacingOccurrencesOfString:@" " withString:@"T"];
     self.dateLabel.text = finalString;
+    [self.cityLabel resignFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning {[super didReceiveMemoryWarning];}
@@ -99,8 +111,14 @@
 
 - (IBAction)goToMap:(id)sender
 {
-    [NSURLSessionHelper fetchEventIDWithin:self.distanceLabel.text latitude:@"+49.281916" longitude:@"-123.108317" price:self.priceLabel.text startdate:self.dateLabel.text events:self.eventIds  eventobjects:self.eventObjects categoryId:@""
-                                      city:@""];
+    if(_cityLabel.text.length == 0)
+    {
+    [NSURLSessionHelper fetchEventIDWithin:self.distanceLabel.text latitude:@"+49.281916" longitude:@"-123.108317" price:self.priceLabel.text startdate:self.dateLabel.text events:self.eventIds  eventobjects:self.eventObjects categoryId:self.categoryIdLabel.text city:@""];
+    }
+    else
+    {
+        [NSURLSessionHelper fetchEventIDWithin:self.distanceLabel.text latitude:@"" longitude:@"" price:self.priceLabel.text startdate:self.dateLabel.text events:self.eventIds  eventobjects:self.eventObjects categoryId:self.categoryIdLabel.text city:self.cityLabel.text];
+    }
     
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -110,4 +128,120 @@
         MapViewController *controller = [segue destinationViewController];
         [controller setEvent:self.eventObjects];
     }}
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    return @"Category";
+}
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return _categories.count;
+}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    CategoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    
+//    cell. = self.categories[indexPath.row];
+    cell.categoryCellLabel.text = self.categories[indexPath.row];
+    
+    return cell;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    //CategoryTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    
+    switch (indexPath.row) {
+        case 0 :
+//            self.categorySelected = @"Arts";
+            self.categoryIdLabel.text = @"105";
+            break;
+        case 1 :
+//            self.categorySelected = @"Auto, Boat & Air";
+            self.categoryIdLabel.text = @"118";
+            break;
+        case 2 :
+//            self.categorySelected = @"Business";
+            self.categoryIdLabel.text = @"101";
+            break;
+        case 3 :
+//            self.categorySelected = @"Charity & Causes";
+            self.categoryIdLabel.text = @"111";
+            break;
+        case 4 :
+//            self.categorySelected = @"Community";
+            self.categoryIdLabel.text = @"113";
+            break;
+        case 5 :
+//            self.categorySelected = @"Family & Education";
+            self.categoryIdLabel.text = @"115";
+            break;
+        case 6 :
+//            self.categorySelected = @"Fashion";
+            self.categoryIdLabel.text = @"106";
+            break;
+        case 7 :
+//            self.categorySelected = @"Film & Media";
+            self.categoryIdLabel.text = @"104";
+            break;
+        case 8 :
+//            self.categorySelected = @"Food & Drink";
+            self.categoryIdLabel.text = @"110";
+            break;
+        case 9 :
+//            self.categorySelected = @"Government";
+            self.categoryIdLabel.text = @"112";
+            break;
+        case 10 :
+//            self.categorySelected = @"Health";
+            self.categoryIdLabel.text = @"107";
+            break;
+        case 11:
+//            self.categorySelected = @"Hobbies";
+            self.categoryIdLabel.text = @"119";
+            break;
+        case 12 :
+//            self.categorySelected = @"Holiday";
+            self.categoryIdLabel.text = @"116";
+            break;
+        case 13 :
+//            self.categorySelected = @"Home & Lifestyle";
+            self.categoryIdLabel.text = @"117";
+            break;
+        case 14 :
+//            self.categorySelected = @"Music";
+            self.categoryIdLabel.text = @"103";
+            break;
+        case 15 :
+//            self.categorySelected = @"Science & Tech";
+            self.categoryIdLabel.text = @"102";
+            break;
+        case 16 :
+//            self.categorySelected = @"Spirituality";
+            self.categoryIdLabel.text = @"114";
+            break;
+        case 17 :
+//            self.categorySelected = @"Sports & Fitness";
+            self.categoryIdLabel.text = @"108";
+            break;
+        case 18 :
+//            self.categorySelected = @"Travel & Outdoor";
+            self.categoryIdLabel.text = @"109";
+            break;
+        default:
+//            self.categorySelected = @"Other";
+            self.categoryIdLabel.text = @"199";
+            break;
+    }
+    // self.categorySelected = cell.textLabel.text;
+    
+
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGFloat height = 30.0;
+    return height;
+}
+
+
 @end
