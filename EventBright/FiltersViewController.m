@@ -31,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *categoryIdLabel;
 @property (weak, nonatomic) IBOutlet UILabel *categoryNameLabel;
 @property (weak, nonatomic) NSString* priceButtonLabel;
+@property (nonatomic) NSString* categoryName;
 @property NSArray* categories;
 @end
 
@@ -47,7 +48,7 @@
     self.events = [[NSMutableArray alloc] init];
     self.eventIds = [[NSMutableArray alloc] init];
     self.eventObject = [[EventModel alloc] init];
-    
+    self.categoryName = @"199";
     self.eventObjects = [[NSMutableArray alloc] init];
     
     self.priceButtonLabel = @"free";
@@ -61,7 +62,7 @@
     self.categoriesDict = [[NSMutableDictionary alloc] init];
     [NSURLSessionHelper fetchEventCategories:self.categoriesDict];
     
-    _categories = [[NSArray alloc]initWithObjects:@"Arts",@"Auto, Boat & Air",@"Business",@"Charity & Causes",@"Community",@"Family & Education",@"Fashion",@"Film & Media",@"Food & Drink",@"Government",@"Health",@"Hobbies",@"Holiday",@"Home & Lifestyle",@"Music",@"Other",@"Science & Tech",@"Spirituality",@"Sports & Fitness",@"Travel & Outdoor", nil];
+    _categories = [[NSArray alloc]initWithObjects:@"Arts",@"Auto, Boat & Air",@"Business",@"Charity & Causes",@"Community",@"Family & Education",@"Fashion",@"Film & Media",@"Food & Drink",@"Government",@"Health",@"Hobbies",@"Holiday",@"Home & Lifestyle",@"Music",@"Science & Tech",@"Spirituality",@"Sports & Fitness",@"Travel & Outdoor",@"Other", nil];
 }
 -(void)observeStepperValueChange:(NSNotification *)notification
 {
@@ -121,11 +122,11 @@
 {
     if(_cityLabel.text.length == 0)
     {
-    [NSURLSessionHelper fetchEventIDWithin:self.distanceLabel.text latitude:@"+49.281916" longitude:@"-123.108317" price:self.priceButtonLabel startdate:self.dateLabel.text events:self.eventIds  eventobjects:self.eventObjects categoryId:self.categoryIdLabel.text city:@""];
+    [NSURLSessionHelper fetchEventIDWithin:self.distanceLabel.text latitude:@"+49.281916" longitude:@"-123.108317" price:self.priceButtonLabel startdate:self.dateLabel.text events:self.eventIds  eventobjects:self.eventObjects categoryId:self.categoryName city:@""];
     }
     else
     {
-        [NSURLSessionHelper fetchEventIDWithin:self.distanceLabel.text latitude:@"" longitude:@"" price:self.priceButtonLabel startdate:self.dateLabel.text events:self.eventIds  eventobjects:self.eventObjects categoryId:self.categoryIdLabel.text city:self.cityLabel.text];
+        [NSURLSessionHelper fetchEventIDWithin:self.distanceLabel.text latitude:@"" longitude:@"" price:self.priceButtonLabel startdate:self.dateLabel.text events:self.eventIds  eventobjects:self.eventObjects categoryId:self.categoryName city:self.cityLabel.text];
     }
     
 }
@@ -163,89 +164,67 @@
     //CategoryTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
     switch (indexPath.row) {
-        case 0 :
-//            self.categorySelected = @"Arts";
-            self.categoryIdLabel.text = @"105";
+        case 0 ://"Arts";
+            self.categoryName = @"105";
             break;
-        case 1 :
-//            self.categorySelected = @"Auto, Boat & Air";
-            self.categoryIdLabel.text = @"118";
+        case 1 ://"Auto, Boat & Air";
+            self.categoryName = @"118";
             break;
-        case 2 :
-//            self.categorySelected = @"Business";
-            self.categoryIdLabel.text = @"101";
+        case 2 ://"Business";
+            self.categoryName = @"101";
             break;
-        case 3 :
-//            self.categorySelected = @"Charity & Causes";
-            self.categoryIdLabel.text = @"111";
+        case 3 ://"Charity & Causes";
+            self.categoryName = @"111";
             break;
-        case 4 :
-//            self.categorySelected = @"Community";
-            self.categoryIdLabel.text = @"113";
+        case 4 ://"Community";
+            self.categoryName = @"113";
             break;
-        case 5 :
-//            self.categorySelected = @"Family & Education";
-            self.categoryIdLabel.text = @"115";
+        case 5 ://Family & Education";
+            self.categoryName = @"115";
             break;
-        case 6 :
-//            self.categorySelected = @"Fashion";
-            self.categoryIdLabel.text = @"106";
+        case 6 ://"Fashion";
+            self.categoryName = @"106";
             break;
-        case 7 :
-//            self.categorySelected = @"Film & Media";
-            self.categoryIdLabel.text = @"104";
+        case 7 ://"Film & Media";
+            self.categoryName = @"104";
             break;
-        case 8 :
-//            self.categorySelected = @"Food & Drink";
-            self.categoryIdLabel.text = @"110";
+        case 8 ://"Food & Drink";
+            self.categoryName = @"110";
             break;
-        case 9 :
-//            self.categorySelected = @"Government";
-            self.categoryIdLabel.text = @"112";
+        case 9 ://"Government";
+            self.categoryName = @"112";
             break;
-        case 10 :
-//            self.categorySelected = @"Health";
-            self.categoryIdLabel.text = @"107";
+        case 10 ://"Health";
+            self.categoryName = @"107";
             break;
-        case 11:
-//            self.categorySelected = @"Hobbies";
-            self.categoryIdLabel.text = @"119";
+        case 11://"Hobbies";
+            self.categoryName = @"119";
             break;
-        case 12 :
-//            self.categorySelected = @"Holiday";
-            self.categoryIdLabel.text = @"116";
+        case 12 ://"Holiday";
+            self.categoryName = @"116";
             break;
-        case 13 :
-//            self.categorySelected = @"Home & Lifestyle";
-            self.categoryIdLabel.text = @"117";
+        case 13 ://"Home & Lifestyle";
+        self.categoryName= @"117";
             break;
-        case 14 :
-//            self.categorySelected = @"Music";
-            self.categoryIdLabel.text = @"103";
+        case 14 ://"Music";
+            self.categoryName = @"103";
             break;
-        case 15 :
-//            self.categorySelected = @"Science & Tech";
-            self.categoryIdLabel.text = @"102";
+        case 15 ://"Science & Tech";
+            self.categoryName = @"102";
             break;
-        case 16 :
-//            self.categorySelected = @"Spirituality";
-            self.categoryIdLabel.text = @"114";
+        case 16 ://"Spirituality";
+            self.categoryName = @"114";
             break;
-        case 17 :
-//            self.categorySelected = @"Sports & Fitness";
-            self.categoryIdLabel.text = @"108";
+        case 17 ://"Sports & Fitness";
+            self.categoryName= @"108";
             break;
-        case 18 :
-//            self.categorySelected = @"Travel & Outdoor";
-            self.categoryIdLabel.text = @"109";
+        case 18 ://"Travel & Outdoor";
+            self.categoryName= @"109";
             break;
-        default:
-//            self.categorySelected = @"Other";
-            self.categoryIdLabel.text = @"199";
+        default://"Other";
+            self.categoryName = @"199";
             break;
     }
-    
-    // self.categorySelected = cell.textLabel.text;
     [self.cityLabel resignFirstResponder];
 
 }
