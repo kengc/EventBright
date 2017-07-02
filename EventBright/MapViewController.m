@@ -29,9 +29,8 @@
     
     NSDictionary *dict = note.userInfo;
     NSArray *dataArray = [dict objectForKey:@"Data"];
-    _coordinateData = [NSMutableArray new];
-    [_coordinateData addObjectsFromArray:dataArray];
-    //    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    self.coordinateData = [NSMutableArray new];
+    [self.coordinateData addObjectsFromArray:dataArray];
     [self getData];
     [self setUpPins];
 }
@@ -43,7 +42,7 @@
 }
 - (void) getData
 {
-    CLLocationCoordinate2D startLocationCoordinate = CLLocationCoordinate2DMake([[_coordinateData[0] latCoordinate] floatValue], [[_coordinateData[0] lonCoordinate] floatValue]);
+    CLLocationCoordinate2D startLocationCoordinate = CLLocationCoordinate2DMake([[self.coordinateData[0] latCoordinate] floatValue], [[self.coordinateData[0] lonCoordinate] floatValue]);
     int regionRadius = 10000;
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(startLocationCoordinate, regionRadius*2, regionRadius*2);
     [self.mapView setRegion:region];
@@ -60,14 +59,14 @@
     for(int i = 0; i < self.coordinateData.count; i++)
     {
         MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
-        point.coordinate = CLLocationCoordinate2DMake([[_coordinateData[i] latCoordinate] floatValue], [[_coordinateData[i] lonCoordinate] floatValue]);
-        point.title = [NSString stringWithFormat:@"%@",  [_coordinateData[i] eventName]];
-        point.subtitle = [NSString stringWithFormat:@"%@  %@",  [_coordinateData[i] venueName], [_coordinateData[i] address]];
+        point.coordinate = CLLocationCoordinate2DMake([[self.coordinateData[i] latCoordinate] floatValue], [[self.coordinateData[i] lonCoordinate] floatValue]);
+        point.title = [NSString stringWithFormat:@"%@",  [self.coordinateData[i] eventName]];
+        point.subtitle = [NSString stringWithFormat:@"%@  %@",  [self.coordinateData[i] venueName], [self.coordinateData[i] address]];
         
-        self.eventurl = [_coordinateData[i] eventurl];
+        self.eventurl = [self.coordinateData[i] eventurl];
         
-        [_mapView addAnnotation: point];
-        [_mapView selectAnnotation:point animated:YES];
+        [self.mapView addAnnotation: point];
+        [self.mapView selectAnnotation:point animated:YES];
     }
 }
 
@@ -88,7 +87,7 @@
 }
 - (void) annotationAction:(AnnotationButton *)sender
 {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:sender.url]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:sender.url] options:@{} completionHandler:nil];
 }
 @end
 

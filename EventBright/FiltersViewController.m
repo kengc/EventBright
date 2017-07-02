@@ -27,12 +27,12 @@
 @property (nonatomic) NSMutableArray *eventIds;
 @property (nonatomic) NSMutableArray *eventObjects;
 @property (nonatomic) EventModel *eventObject;
-  @property (nonatomic) NSMutableDictionary *categoriesDict;
+@property (nonatomic) NSMutableDictionary *categoriesDict;
 @property (weak, nonatomic) IBOutlet UILabel *categoryIdLabel;
 @property (weak, nonatomic) IBOutlet UILabel *categoryNameLabel;
 @property (weak, nonatomic) NSString* priceButtonLabel;
 @property (nonatomic) NSString* categoryName;
-@property NSArray* categories;
+@property (nonatomic) NSArray* categories;
 @end
 
 
@@ -41,9 +41,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _distanceSlider.minimumValue = 1;
-    _distanceSlider.maximumValue = 100;
-    _distanceSlider.value = 1;
+    self.distanceSlider.minimumValue = 1;
+    self.distanceSlider.maximumValue = 100;
+    self.distanceSlider.value = 1;
     
     self.events = [[NSMutableArray alloc] init];
     self.eventIds = [[NSMutableArray alloc] init];
@@ -53,12 +53,12 @@
     
     self.priceButtonLabel = @"free";
     
-    _datePicker.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
+    self.datePicker.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
 
     self.categoriesDict = [[NSMutableDictionary alloc] init];
     [NSURLSessionHelper fetchEventCategories:self.categoriesDict];
     
-    _categories = [[NSArray alloc]initWithObjects:@"Arts",@"Auto, Boat & Air",@"Business",@"Charity & Causes",@"Community",@"Family & Education",@"Fashion",@"Film & Media",@"Food & Drink",@"Government",@"Health",@"Hobbies",@"Holiday",@"Home & Lifestyle",@"Music",@"Science & Tech",@"Spirituality",@"Sports & Fitness",@"Travel & Outdoor",@"Other", nil];
+    self.categories = [[NSArray alloc]initWithObjects:@"Arts",@"Auto, Boat & Air",@"Business",@"Charity & Causes",@"Community",@"Family & Education",@"Fashion",@"Film & Media",@"Food & Drink",@"Government",@"Health",@"Hobbies",@"Holiday",@"Home & Lifestyle",@"Music",@"Science & Tech",@"Spirituality",@"Sports & Fitness",@"Travel & Outdoor",@"Other", nil];
 }
 -(void)observeStepperValueChange:(NSNotification *)notification
 {
@@ -71,31 +71,28 @@
 }
 - (IBAction)distanceSlider:(id)sender
 {
-    _currentDistance = (int)self.distanceSlider.value;
+    self.currentDistance = (int)self.distanceSlider.value;
     NSString* km = [NSString stringWithFormat:@"%ikm", self.currentDistance];
     self.distanceLabel.text = km;
     [self.cityLabel resignFirstResponder];
 }
 - (IBAction)isFreeButton:(id)sender
 {
-    if(_isFreeButton.selected == YES)
+    if(self.isFreeButton.selected == YES)
     {
         self.priceButtonLabel = @"free";
     }
     else{
         self.priceButtonLabel = @"paid";
-        [_isFreeButton setTitle:@"PAID" forState:UIControlStateSelected];
+        [self.isFreeButton setTitle:@"PAID" forState:UIControlStateSelected];
     }
-    _isFreeButton.selected = !_isFreeButton.selected;
+    self.isFreeButton.selected = !self.isFreeButton.selected;
     
 }
-- (IBAction)cityLabel:(id)sender
-{
-    
-}
+
 - (IBAction)datePicker:(id)sender
 {
-    NSDate *chosen = [_datePicker date];
+    NSDate *chosen = [self.datePicker date];
     NSString *dateText = [NSString stringWithFormat:@"%@",chosen];
     
     NSMutableString* dateTextMutable = (NSMutableString*)dateText;
@@ -106,12 +103,10 @@
     [self.cityLabel resignFirstResponder];
 }
 
-- (void)didReceiveMemoryWarning {[super didReceiveMemoryWarning];}
-
 
 - (IBAction)goToMap:(id)sender
 {
-    if(_cityLabel.text.length == 0)
+    if(self.cityLabel.text.length == 0)
     {
     [NSURLSessionHelper fetchEventIDWithin:self.distanceLabel.text latitude:@"+49.281916" longitude:@"-123.108317" price:self.priceButtonLabel startdate:self.dateLabel.text events:self.eventIds  eventobjects:self.eventObjects categoryId:self.categoryName city:@""];
     }
@@ -129,20 +124,17 @@
         [controller setEvent:self.eventObjects];
     }}
 
-//-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-//    return @"Categories";
-//}
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return _categories.count;
+    return self.categories.count;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     CategoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
-//    cell. = self.categories[indexPath.row];
     cell.categoryCellLabel.text = self.categories[indexPath.row];
     cell.categoryCellLabel.highlightedTextColor = [UIColor  orangeColor];
     UIView *selectionColor = [[UIView alloc] init];
@@ -152,7 +144,6 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    //CategoryTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
     switch (indexPath.row) {
         case 0 ://"Arts";
@@ -195,7 +186,7 @@
             self.categoryName = @"116";
             break;
         case 13 ://"Home & Lifestyle";
-        self.categoryName= @"117";
+            self.categoryName= @"117";
             break;
         case 14 ://"Music";
             self.categoryName = @"103";
